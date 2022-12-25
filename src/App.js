@@ -14,11 +14,13 @@ function App() {
       {!isDesktop &&
         <>
           <Routes>
-            <Route path='/' element={<Favorite />} />
-            <Route path='/search' element={<Search baseURL={baseURL}/>} />
-            <Route path='/event' element={<>イベント</>} />
+            <Route path='/' element={<>ルート</>} />
+            <Route path='/sumaho' element={<BottomNav />} >
+              <Route path='' element={<Favorite />} />
+              <Route path='search' element={<Search baseURL={baseURL} />} />
+              <Route path='event' element={<>イベント</>} />
+            </Route>
           </Routes>
-          <BottomNav />
         </>
       }
 
