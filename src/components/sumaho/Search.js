@@ -1,11 +1,16 @@
+/*TODO: PICKUP写真のアイコンと文字追加
+        PICKUP写真のスライド化
+        import文の整理
+*/
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { IconButton, InputBase, Typography } from "@mui/material"
+import { Button, IconButton, InputBase, Typography } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search'
 import styled from "styled-components"
-import Font from "@fontsource/noto-sans-jp"
 import Tag from "./Tag"
 import { Grid } from "@mui/material"
+import AddIcon from '@mui/icons-material/Add';
+import { Link } from "react-router-dom"
 const Search = ({ baseURL }) => {
 
     const [image, setImgae] = useState({})
@@ -16,7 +21,7 @@ const Search = ({ baseURL }) => {
     const getImage = () => {
         axios.get(url)
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 setImgae(res.data.data[1].images_url)
             })
             .catch(err => console.log(err))
@@ -24,7 +29,7 @@ const Search = ({ baseURL }) => {
     const getTagDatas = () => {
         axios.get(url2)
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 setTagDatas(res.data.data)
             })
             .catch(err => console.log(err))
@@ -34,28 +39,53 @@ const Search = ({ baseURL }) => {
         getTagDatas()
     }, [])
     return (
-        <Container>
+        <>
             <SearchField>
+                {/* FIXME: プレイスホルダーのスタイルの変更 or ボタンとして修正 */}
                 <StyledInput placeholder="名前で検索" sx={{ flex: 1 }} />
                 <IconButton type="button">
                     <SearchIcon />
                 </IconButton>
             </SearchField>
             {image && <Img src={image} />}
-            <TypoDiv>
-                <Typography sx={{ fontFamily: Font }}>タグで検索</Typography>
-            </TypoDiv>
-            {/* {tagDatas[0] && <p>{tagDatas[3].tagname}</p>} */}
-            <Grid container>
-                {Object.keys(tagDatas).map(key => <Tag key={key} data={tagDatas[key]} />)}
-            </Grid>
-        </Container>
+            <Container>
+                <TypoDiv>
+                    <Typography sx={{ fontFamily: 'Noto Sans JP', fontWeight: 'bold', marginBottom: '0.5rem' }} color="subtitle1.main">タグで検索</Typography>
+                </TypoDiv>
+                <StyledTypo sx={{ fontFamily: 'Noto Sans JP', fontWeight: 'bold', marginTop: '0.5rem', fontSize: '0.8rem' }} color="subtitle1.main">よく使われているタグ</StyledTypo>
+                <TagDiv>
+                    <Grid container spacing={1.5}>
+                        {Object.keys(tagDatas).slice(0, 8).map(key => <Tag key={key} data={tagDatas[key]} />)}
+                    </Grid>
+                </TagDiv>
+                {/* FIXME: イベントタグを本物にする */}
+                <StyledTypo sx={{ fontFamily: 'Noto Sans JP', fontWeight: 'bold', marginTop: '2.5rem', fontSize: '0.8rem' }} color="subtitle1.main">イベントタグ</StyledTypo>
+                <TagDiv>
+                    <Grid container spacing={1.5}>
+                        {Object.keys(tagDatas).slice(0, 8).map(key => <Tag key={key} data={tagDatas[key]} />)}
+                    </Grid>
+                </TagDiv>
+                {/* FIXME: ボタンの見た目をもっとfigmaに近づける努力 */}
+                <Button
+                    variant="contained"
+                    startIcon={<AddIcon />}
+                    sx={{
+                        fontFamily: 'Noto Sans JP',
+                        fontWeight: 'bold',
+                        display: 'flex',
+                        mr: 0, 
+                        ml: 'auto',
+                        mt: '2rem'
+                    }}
+                    size="large"
+                >写真投稿</Button>
+            </Container>
+        </>
     )
 }
 export default Search
 const Container = styled.div`
-    height: 100%;
-    width: 100%;
+    padding: 1.5rem;
 `
 const SearchField = styled.div`
     display: flex;
@@ -70,15 +100,20 @@ const Img = styled.img`
     object-fit: cover;
 `
 const StyledInput = styled(InputBase)`
-
-        ::placeholder {
-            text-align: center;
-        }
-    
 `
 const TypoDiv = styled.div`
-    border-bottom: solid  grey 1px;
+    border-bottom: solid #CDCDCD 2px;
+`
+const TagDiv = styled.div`
+    margin-top: 1rem;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+`
+const StyledTypo = styled(Typography)`
+    position: relative;
     width: 80%;
+    display: block;
     margin-left: auto;
     margin-right: auto;
 `

@@ -1,3 +1,7 @@
+/*
+FIXME:  影をつけましょう
+        フッターの光る場所変わるバグ
+*/
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -6,7 +10,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { Link, Outlet } from 'react-router-dom';
 const BottomNav = () => {
-    const [value, setValue] = useState("")
+    const [value, setValue] = useState(0)
     return (
         <>
             <Outlet />
@@ -15,6 +19,7 @@ const BottomNav = () => {
                 showLabels
                 onChange={(e, newValue) => {
                     setValue(newValue)
+                    // console.log(value)
                 }}
             >
                 <BottomNavigationAction label="いいね" icon={<FavoriteIcon />} component={Link} to={""} />

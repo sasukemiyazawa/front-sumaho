@@ -1,23 +1,20 @@
-import { Box } from "@mui/system"
 import { useEffect } from "react"
-import { Grid } from "@mui/material"
-import styled from "styled-components"
+import { Grid, Typography } from "@mui/material"
+import Button from "@mui/material/Button"
+import { Link } from "react-router-dom"
 const Tag = ({ data }) => {
-    useEffect(() => {
-        // console.log(data)
-    }, [])
+    // useEffect(() => {
+    //     console.log(data)
+    // }, [])
+    //FIXME: ４字以上だとバグります。
     return (
-        <Grid item xs={3}>
+        <Grid item xs={3}> 
 
-            <StyledBox sx={{ border: 1, borderRadius: '1rem', borderColor: 'black' }}>
-                {data.tagname}
-            </StyledBox>
+            <Button variant="text" color="info" sx={{ padding: "0px", border: 2, borderRadius: '1rem', borderColor: 'secondary.main', width: '100%'}} component={Link} to={`/sumaho/results/${data.id}`}>
+                <Typography sx={{ fontFamily: 'Zen Kaku Gothic New', fontWeight: 'bold' }}>{data.tagname}</Typography>
+            </Button>
 
         </Grid>
     )
 }
 export default Tag
-
-const StyledBox = styled(Box)`
-    width: 4rem;
-`
