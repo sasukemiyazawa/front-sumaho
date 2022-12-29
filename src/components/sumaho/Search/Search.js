@@ -10,7 +10,6 @@ import styled from "styled-components"
 import Tag from "./Tag"
 import { Grid } from "@mui/material"
 import AddIcon from '@mui/icons-material/Add';
-import { Link } from "react-router-dom"
 const Search = ({ baseURL }) => {
 
     const [image, setImgae] = useState({})
@@ -29,7 +28,7 @@ const Search = ({ baseURL }) => {
     const getTagDatas = () => {
         axios.get(url2)
             .then(res => {
-                // console.log(res)
+                console.log(res)
                 setTagDatas(res.data.data)
             })
             .catch(err => console.log(err))
@@ -37,6 +36,8 @@ const Search = ({ baseURL }) => {
     useEffect(() => {
         getImage()
         getTagDatas()
+        // 以下のコメントはwarningを消すため
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (
         <>

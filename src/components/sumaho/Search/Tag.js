@@ -1,11 +1,12 @@
-import { useEffect } from "react"
 import { Grid, Typography } from "@mui/material"
 import Button from "@mui/material/Button"
 import { Link } from "react-router-dom"
+
+import { useEffect } from "react"
 const Tag = ({ data }) => {
-    // useEffect(() => {
-    //     console.log(data)
-    // }, [])
+    useEffect(() => {
+        // console.log(data)
+    }, [])
     //FIXME: ４字以上だとバグります。
     return (
         <Grid item xs={3}> 

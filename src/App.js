@@ -2,16 +2,18 @@ import { useMediaQuery } from 'react-responsive';
 import './App.css';
 import BottomNav from './components/sumaho/BottomNav';
 import { Routes, Route } from 'react-router-dom';
-import Favorite from './components/sumaho/Favorite';
-import Search from './components/sumaho/Search';
+import Favorite from './components/sumaho/Favorite/Favorite';
+import Search from './components/sumaho/Search/Search';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material';
-import Results from './components/sumaho/Results';
+import Results from './components/sumaho/Search/Results';
+import Show from './components/sumaho/Search/Show';
 
 function App() {
   const baseURL = "http://localhost:3001/api/v1/"
 
-  //スマホ用・レスポンシブにする
+  // スマホ用・レスポンシブにする
+  // FIXME: クロムでしか効かない
   const isDesktop = useMediaQuery({ query: '(min-width: 768px' })
   //（とりあえず）スマホ用・themeを決める
   const theme = createTheme({
@@ -49,6 +51,7 @@ function App() {
                 <Route path='' element={<Favorite />} />
                 <Route path='search' element={<Search baseURL={baseURL} />} />
                 <Route path='results/:tag_id' element={<Results baseURL={baseURL} />} />
+                <Route path='show/:id' element={<Show baseURL={baseURL} />} />
                 <Route path='event' element={<>イベント</>} />
               </Route>
             </Routes>
