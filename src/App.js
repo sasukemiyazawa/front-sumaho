@@ -8,6 +8,9 @@ import { CssBaseline } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material';
 import Results from './components/sumaho/Search/Results';
 import Show from './components/sumaho/Search/Show';
+import Header from './components/sumaho/Event/Header';
+import Now from './components/sumaho/Event/Now';
+import List from './components/sumaho/Event/List';
 
 function App() {
   const baseURL = "http://localhost:3001/api/v1/"
@@ -52,7 +55,10 @@ function App() {
                 <Route path='search' element={<Search baseURL={baseURL} />} />
                 <Route path='results/:tag_id' element={<Results baseURL={baseURL} />} />
                 <Route path='show/:id' element={<Show baseURL={baseURL} />} />
-                <Route path='event' element={<>イベント</>} />
+                <Route path='event' element={<Header />} >
+                  <Route path='' element={<Now baseURL={baseURL} />} />
+                  <Route path='list' element={<List />} />
+                </Route>
               </Route>
             </Routes>
           </>

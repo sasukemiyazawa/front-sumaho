@@ -1,3 +1,9 @@
+/*
+TODO: （たぶん）コメントの行数が多いときに一番下まで表示されないから直す
+      そもそも改行がうまく動かないかも->確認
+      タグが多いときとかも試していない->確認
+*/
+
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { useParams, useNavigate } from "react-router-dom"
