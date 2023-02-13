@@ -11,6 +11,7 @@ import Show from './components/sumaho/Search/Show';
 import Header from './components/sumaho/Event/Header';
 import Now from './components/sumaho/Event/Now';
 import List from './components/sumaho/Event/List';
+import ListShow from './components/sumaho/Event/ListShow';
 
 function App() {
   const baseURL = "http://localhost:3001/api/v1/"
@@ -57,7 +58,8 @@ function App() {
                 <Route path='show/:id' element={<Show baseURL={baseURL} />} />
                 <Route path='event' element={<Header />} >
                   <Route path='' element={<Now baseURL={baseURL} />} />
-                  <Route path='list' element={<List />} />
+                  <Route path='list' element={<List baseURL={baseURL} />} />
+                  <Route path=':id' element={<ListShow baseURL={baseURL} />} />
                 </Route>
               </Route>
             </Routes>

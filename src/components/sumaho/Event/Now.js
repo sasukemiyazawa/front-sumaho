@@ -13,7 +13,7 @@ const Now = ({ baseURL }) => {
   const [event, setEvent] = useState({})
   const [tagDatas, setTagDatas] = useState([])
   const getEvent = () => {
-    const url = `${baseURL}events/3`
+    const url = `${baseURL}events/4`
     axios.get(url)
       .then(res => {
         console.log(res.data)
