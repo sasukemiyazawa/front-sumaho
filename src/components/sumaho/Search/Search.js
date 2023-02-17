@@ -10,12 +10,15 @@ import styled from "styled-components"
 import Tag from "./Tag"
 import { Grid } from "@mui/material"
 import AddIcon from '@mui/icons-material/Add';
+import { useNavigate } from "react-router-dom"
 const Search = ({ baseURL }) => {
 
     const [image, setImgae] = useState({})
     const [tagDatas, setTagDatas] = useState([])
     const url = baseURL + 'posts'
     const url2 = baseURL + 'tags'
+
+    const navigate = useNavigate()
 
     const getImage = () => {
         axios.get(url)
@@ -74,11 +77,13 @@ const Search = ({ baseURL }) => {
                         fontFamily: 'Noto Sans JP',
                         fontWeight: 'bold',
                         display: 'flex',
-                        mr: 0, 
+                        mr: 0,
                         ml: 'auto',
                         mt: '2rem'
                     }}
                     size="large"
+                    onClick={()=>navigate("/sumaho/post")}
+
                 >写真投稿</Button>
             </Container>
         </>

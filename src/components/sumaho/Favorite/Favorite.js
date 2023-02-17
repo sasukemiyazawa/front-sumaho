@@ -1,6 +1,12 @@
-const Favorite = () => {
+/*
+TODO: 
+いいね機能追加
+レスポンシブにする
+*/
+import Signage from "./Signage"
+const Favorite = ({baseURL}) => {
     return(
-        <>いいね</>
+        <Signage baseURL={baseURL} />
     )
 }
 export default Favorite

@@ -65,6 +65,8 @@ const Results = ({ baseURL }) => {
               mr: '0px'
             }}
             size="large"
+            component={Link}
+            to="/sumaho/post"
           >写真投稿</Button>
         </Toolbar>
       </AppBar>
