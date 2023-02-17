@@ -60,7 +60,7 @@ const Signage = ({ baseURL }) => {
       {/* <h1>{splide.index}</h1> */}
       {/* <input type="number" value={state} placeholder="num" onChange={e => setState(e.target.value)} /> */}
 
-      <Header />
+      {/* <Header /> */}
 
       <ParticlesDiv>
         <Particles options={particlesOptions} init={particlesInit} />
@@ -109,22 +109,21 @@ const Signage = ({ baseURL }) => {
 
           </Splide>
         </SlidesDiv>
-
       </ParticlesDiv>
-      <Wrapper>
-        <NNextSlide />
-        <NextSlide />
-      </Wrapper>
     </Container>
   )
 }
 export default Signage
 
 const Container = styled.div`
-  height: calc(100%-5rem);
+  height: calc(100vh - 5rem);
   /* aspect-ratio: 9/16; */
   /* width: 56.25vh; */
   background-color: #707070;
+
+  /* FIXME: */
+  overflow: scroll;
+
 `
 
 const NextSlide = styled.div`
@@ -154,7 +153,7 @@ const NNextSlide = styled.div`
 
 const ParticlesDiv = styled.div`
   position: relative;
-  height: 87vh;
+  height: 100%;
 
   box-shadow: 0px 0.5rem, 0.5rem rgba(0, 0, 0, 0.25);
   border-radius: 0px 0px 5rem 5rem;

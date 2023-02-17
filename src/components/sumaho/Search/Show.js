@@ -41,7 +41,7 @@ const Show = ({ baseURL }) => {
       <AppBar sx={{ backgroundColor: 'white' }}>
         <Toolbar sx={{ height: "3rem" }} >
           {/* FIXME: 戻るボタンの挙動 */}
-          <IconButton sx={{ borderRadius: '50%', backgroundColor: '#E7E7E7' }} size='small' onClick={()=>navigate(-1)}>
+          <IconButton sx={{ borderRadius: '50%', backgroundColor: '#E7E7E7' }} size='small' onClick={() => navigate(-1)}>
             <ArrowBackIosTwoToneIcon />
           </IconButton>
           <Button
@@ -59,45 +59,48 @@ const Show = ({ baseURL }) => {
         </Toolbar>
       </AppBar>
 
-      <Img src={data.images_url} />
+        <Img src={data.images_url} />
 
-      <Div>
-        <Typography sx={{ fontFamily: "Noto Sans JP", fontWeight: "Bold", mr: "0.5rem" }} color="subtitle1.main">
-          {data.titles}
+        <Div>
+          <Typography sx={{ fontFamily: "Noto Sans JP", fontWeight: "Bold", mr: "0.5rem" }} color="subtitle1.main">
+            {data.titles}
+          </Typography>
+
+          <FavoriteIcon sx={{ fontFamily: "Noto Sans JP", fontWeight: "Bold", fontSize: '0.8rem', position: "relative", bottom: "0.15rem" }} color="primary" />
+          <Typography sx={{ fontFamily: "Noto Sans JP", fontWeight: "Bold", fontSize: '0.8rem' }} color="subtitle1.main">
+            {data.likeCounts}
+          </Typography>
+        </Div>
+        <Typography sx={{ fontFamily: "Noto Sans JP", fontWeight: "Bold", fontSize: "0.7rem" }} color="subtitle1.main">
+          {data.nickname}さんの投稿
         </Typography>
 
-        <FavoriteIcon sx={{ fontFamily: "Noto Sans JP", fontWeight: "Bold", fontSize: '0.8rem', position: "relative", bottom: "0.15rem" }} color="primary" />
-        <Typography sx={{ fontFamily: "Noto Sans JP", fontWeight: "Bold", fontSize: '0.8rem' }} color="subtitle1.main">
-          {data.likeCounts}
+        <TagDiv>
+          <Grid container spacing={1.5}>
+            {Object.keys(tagDatas).slice(0, 8).map(key => (
+              <Grid item xs={3} key={key}>
+                <Button variant="text" color="info" sx={{ padding: "0px", border: 2, borderRadius: '1rem', borderColor: 'secondary.main', width: '100%' }} >
+                  <Typography sx={{ fontFamily: 'Zen Kaku Gothic New', fontWeight: 'bold' }}>{tagDatas[key]}</Typography>
+                </Button>
+              </Grid>
+            ))}
+          </Grid>
+        </TagDiv>
+
+        <Typography sx={{ fontSize: "0.8rem", mt: "0.5rem" }}>
+          {data.comments}
         </Typography>
-      </Div>
-      <Typography sx={{ fontFamily: "Noto Sans JP", fontWeight: "Bold", fontSize: "0.7rem" }} color="subtitle1.main">
-        {data.nickname}さんの投稿
-      </Typography>
 
-      <TagDiv>
-        <Grid container spacing={1.5}>
-          {Object.keys(tagDatas).slice(0, 8).map(key => (
-            <Grid item xs={3} key={key}>
-              <Button variant="text" color="info" sx={{ padding: "0px", border: 2, borderRadius: '1rem', borderColor: 'secondary.main', width: '100%' }} >
-                <Typography sx={{ fontFamily: 'Zen Kaku Gothic New', fontWeight: 'bold' }}>{tagDatas[key]}</Typography>
-              </Button>
-            </Grid>
-          ))}
-        </Grid>
-      </TagDiv>
-
-      <Typography sx={{fontSize: "0.8rem", mt: "0.5rem"}}>
-        {data.comments}
-      </Typography>
-
-    </Container>
+      </Container>
   )
 }
 export default Show
 // FIXME: marginの使い方、雑かも
 const Container = styled.div`
   padding: 1.5rem;
+  height: calc(100vh - 5rem);
+  overflow-y: scroll;
+  overflow-x: hidden;
 `
 const Img = styled.img`
   margin-top: 4rem;

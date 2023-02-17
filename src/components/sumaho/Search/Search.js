@@ -43,7 +43,7 @@ const Search = ({ baseURL }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (
-        <>
+        <Div>
             <SearchField>
                 {/* FIXME: プレイスホルダーのスタイルの変更 or ボタンとして修正 */}
                 <StyledInput placeholder="名前で検索" sx={{ flex: 1 }} />
@@ -82,14 +82,18 @@ const Search = ({ baseURL }) => {
                         mt: '2rem'
                     }}
                     size="large"
-                    onClick={()=>navigate("/sumaho/post")}
+                    onClick={() => navigate("/sumaho/post")}
 
                 >写真投稿</Button>
             </Container>
-        </>
+        </Div>
     )
 }
 export default Search
+const Div = styled.div`
+    height: calc(100% - 5rem);
+    overflow: scroll;
+`
 const Container = styled.div`
     padding: 1.5rem;
 `
@@ -105,7 +109,16 @@ const Img = styled.img`
     position: relative;
     object-fit: cover;
 `
-const StyledInput = styled(InputBase)`
+const StyledInput = styled(InputBase).attrs({
+    placeholderTextColor: "red"
+})`
+    ::placeholder,
+  ::-webkit-input-placeholder {
+    color: red;
+  }
+  :-ms-input-placeholder {
+     color: red;
+  }
 `
 const TypoDiv = styled.div`
     border-bottom: solid #CDCDCD 2px;
