@@ -58,11 +58,11 @@ function App() {
                 <Route path='post' element={<Post baseURL={baseURL} />} />
                 <Route path='results/:tag_id' element={<Results baseURL={baseURL} />} />
                 <Route path='show/:id' element={<Show baseURL={baseURL} />} />
-                <Route path='event' element={<Header />} >
-                  <Route path='' element={<Now baseURL={baseURL} />} />
-                  <Route path='list' element={<List baseURL={baseURL} />} />
-                  <Route path=':id' element={<ListShow baseURL={baseURL} />} />
-                </Route>
+                <Route path='event' element={<Header baseURL={baseURL}/>} />
+                  {/* <Route path='' element={<Now baseURL={baseURL} />} /> */}
+                  {/* <Route path='list' element={<List baseURL={baseURL} />} /> */}
+                <Route path='event/:id' element={<ListShow baseURL={baseURL} />} />
+                {/* </Route> */}
               </Route>
             </Routes>
           </>

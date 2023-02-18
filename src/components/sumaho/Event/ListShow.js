@@ -10,7 +10,9 @@ import { Toolbar } from "@mui/material"
 import ArrowBackIosTwoToneIcon from '@mui/icons-material/ArrowBackIosTwoTone'
 import styled from "styled-components"
 
-const ListShow = ({ baseURL }) => {
+
+/* TODO: useEffectからevent情報取得 -> eventのtagでgetImage -> 表示 */
+const ListShow = ({ baseURL, setTransition, eId }) => {
   const { id } = useParams()
   const [datas, setDatas] = useState([])
   const [tag, setTag] = useState("")
@@ -27,7 +29,7 @@ const ListShow = ({ baseURL }) => {
   }
 
   useEffect(() => {
-    getImage(parseInt(id))
+    getImage(parseInt(eId))
     // console.log(id)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
@@ -36,7 +38,8 @@ const ListShow = ({ baseURL }) => {
       {/*FIXME: もっとおしゃれに  */}
 
       <Toolbar sx={{ height: "3rem", mt: "1rem" }} >
-        <IconButton sx={{ borderRadius: '50%', backgroundColor: '#E7E7E7' }} size='small' component={Link} onClick={()=>navigate(-1)}>
+        {/* <IconButton sx={{ borderRadius: '50%', backgroundColor: '#E7E7E7' }} size='small' component={Link} onClick={()=>navigate(-1)}> */}
+        <IconButton sx={{ borderRadius: '50%', backgroundColor: '#E7E7E7' }} size='small' component={Link} onClick={()=>setTransition(false)}>
           <ArrowBackIosTwoToneIcon />
         </IconButton>
         {/* FIXME: ml:26vwをもっとスマートな記述にしたい */}

@@ -11,7 +11,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { Link, Outlet } from 'react-router-dom';
 const BottomNav = () => {
-  const [value, setValue] = useState(1)
+  const [value, setValue] = useState(0)
   return (
     <>
       <Outlet />

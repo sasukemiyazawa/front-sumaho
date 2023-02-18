@@ -4,11 +4,15 @@ import styled from "styled-components"
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 
-const ListItem = ({ event }) => {
+const ListItem = ({ event, setTransition, setEId }) => {
 	const navigate = useNavigate()
 	return (
 		<>
-			<Button onClick={()=>navigate(`/sumaho/event/${event.id}`)} >
+			{/* <Button onClick={()=>navigate(`/sumaho/event/${event.id}`)} > */}
+			<Button onClick={()=>{
+				setTransition(true)
+				setEId(event.id)
+				}} >
 				<Img src={event.image_url} />
 				<Div>
 					<Typography sx={{ fontFamily: "Zenkaku Gothic New", fontWeight: "Bold", m: "1rem" }} color="info.main">
