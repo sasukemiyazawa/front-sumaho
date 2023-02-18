@@ -110,7 +110,7 @@ const Img = styled.img`
     object-fit: cover;
 `
 const StyledInput = styled(InputBase).attrs({
-    placeholderTextColor: "red"
+    placeholdertextcolor: "red"
 })`
     ::placeholder,
   ::-webkit-input-placeholder {
